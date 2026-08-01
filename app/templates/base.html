@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SMART CASH AND CARRY online grocery and household store">
+  <title>{% block title %}SMART CASH AND CARRY{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="announcement">
+    <span>Free delivery on orders above Rs. 3,000</span>
+    <span>Fresh prices • Reliable delivery</span>
+  </div>
+
+  <header class="site-header">
+    <div class="shell header-main">
+      <button class="mobile-menu" type="button" data-menu-toggle aria-label="Toggle menu">☰</button>
+      <a href="/" class="brand" aria-label="AI Fatah home">
+        <span class="brand-mark"><i></i><b></b></span>
+        <span><strong><em>AI</em> FATAH</strong><small>Freshness, every day</small></span>
+      </a>
+      <button class="location-chip" type="button" data-location-button>
+        <span>⌖</span><span><small>Delivery or pickup</small><strong>Set your location</strong></span>
+      </button>
+      <form action="/" method="get" class="header-search">
+        <span>⌕</span>
+        <input type="search" name="q" value="{{ search_query|default('') }}" placeholder="Search groceries and everyday essentials" aria-label="Search products">
+      </form>
+      <a href="/cart" class="cart-link" aria-label="Shopping cart">🛒<span>{{ cart_count }}</span></a>
+    </div>
+    <nav class="main-nav" data-main-nav>
+      <div class="shell nav-content">
+        <a href="/" class="nav-department">Shop by Departments</a>
+        <a href="/#products" class="deal-link">％ Shop Deals</a>
+        <a href="/?category=fresh-produce">Fresh Food</a>
+        <a href="/?category=pantry">Grocery</a>
+        <a href="/?category=home-care">Household</a>
+        <a href="/?category=personal-care">Personal Care</a>
+        <a href="/admin/login">Admin</a>
+      </div>
+    </nav>
+  </header>
+
+  {% if flash %}
+    <div class="flash flash-{{ flash.category }} shell" role="status">
+      <span>{{ flash.message }}</span><button type="button" aria-label="Close" data-flash-close>×</button>
+    </div>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-about">
+        <a href="/" class="brand footer-brand"><span class="brand-mark"><i></i><b></b></span><span><strong><em>AI</em> FATAH</strong><small>Freshness, every day</small></span></a>
+        <p>Your neighbourhood supermarket, now online. Fresh groceries and home essentials delivered with care.</p>
+      </div>
+      <div><h3>Shop</h3><a href="/?category=fresh-produce">Fresh produce</a><a href="/?category=dairy-eggs">Dairy & eggs</a><a href="/?category=pantry">Pantry</a></div>
+      <div><h3>Customer care</h3><a href="/cart">Your cart</a><a href="#">Delivery information</a><a href="#">Contact us</a></div>
+      <div><h3>About</h3><a href="#">Our story</a><a href="#">Store locations</a><a href="/admin/login">Admin portal</a></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 AI Fatah. All rights reserved.</span><span>Made for fresh, simple shopping.</span></div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/{{ settings.WHATSAPP_NUMBER }}?text=Assalam-o-Alaikum%2C%20I%20need%20help%20with%20AI%20Fatah." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">◉</a>
+
+  <dialog class="location-dialog" data-location-dialog>
+    <button type="button" data-location-close aria-label="Close">×</button>
+    <span class="dialog-icon">📍</span>
+    <p class="eyebrow">Delivery location</p>
+    <h2>Where should we deliver?</h2>
+    <p>Enter your area to check delivery availability.</p>
+    <input type="text" placeholder="e.g. Model Town, Sialkot">
+    <button type="button" class="primary-button" data-location-close>Use this location</button>
+  </dialog>
+
+  <script src="{{ url_for('static', path='/js/store.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
