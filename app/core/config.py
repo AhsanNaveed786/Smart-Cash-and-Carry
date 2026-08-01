@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseSettings):
-    APP_NAME: str = "AI Fatah Online Store"
+    APP_NAME: str = "SMART CASH & CARRY"
     DEBUG: bool = True
     SECRET_KEY: str = "development-only-change-me"
     DATABASE_URL: str = "sqlite:///./ai_fatah.db"

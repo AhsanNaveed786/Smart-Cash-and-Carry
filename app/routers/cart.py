@@ -94,7 +94,7 @@ def whatsapp_order(request: Request, db: Session = Depends(get_db)):
         set_flash(request, "Add products before creating a WhatsApp order.", "error")
         return RedirectResponse("/cart", status_code=status.HTTP_303_SEE_OTHER)
 
-    lines = ["Assalam-o-Alaikum, I want to place an AI Fatah order:", ""]
+    lines = ["Assalam-o-Alaikum, I want to place an SMART CASH AND CARRY order:", ""]
     for item in items:
         lines.append(
             f"• {item['product'].name} × {item['quantity']} = Rs. {float(item['line_total']):,.0f}"
